@@ -12,9 +12,7 @@ package org.dyndns.jkiddo;
 
 import java.net.UnknownHostException;
 
-import org.dyndns.jkiddo.Jolivia.JoliviaBuilder.SecurityScheme;
-import org.dyndns.jkiddo.dmp.chunks.media.AuthenticationMethod.PasswordMethod;
-import org.dyndns.jkiddo.logic.desk.DeskMusicStoreReader;
+import org.dyndns.jkiddo.logic.desk.GoogleStoreReader;
 import org.dyndns.jkiddo.logic.interfaces.IMusicStoreReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,10 +33,12 @@ public final class JoliviaMainer {
 		SLF4JBridgeHandler.install();
 
 		try {
-			final IMusicStoreReader reader = new DeskMusicStoreReader();
-			new Jolivia.JoliviaBuilder().name("Kiddo's Library")
-					.homeSharing("someuser", "somepass")
-					.security(PasswordMethod.PASSWORD, SecurityScheme.BASIC).pairingCode(1337).musicStoreReader(reader)
+//            final IMusicStoreReader reader = new DeskMusicStoreReader();
+            final IMusicStoreReader reader = new GoogleStoreReader(args[0], args[1], args[2]);
+			new Jolivia.JoliviaBuilder().name("Google Play Music Library")
+//					.homeSharing("someuser", "somepass")
+//					.security(PasswordMethod.NO_PASSWORD, SecurityScheme.BASIC)
+					.port(4000).pairingCode(2337).musicStoreReader(reader)
 					.build().start();
 
 		} catch (final Exception e) {

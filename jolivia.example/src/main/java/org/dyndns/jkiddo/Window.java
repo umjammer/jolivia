@@ -33,6 +33,7 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import org.dyndns.jkiddo.logic.desk.DeskMusicStoreReader;
+import org.dyndns.jkiddo.logic.desk.GoogleStoreReader;
 import org.dyndns.jkiddo.logic.interfaces.IMusicStoreReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,8 +66,9 @@ public class Window
 	private final JButton btnNewButton_1;
 	private final JCheckBox chckbxUseGoogleMusic;
 	private final ExecutorService executor;
-	private File path = new File(System.getProperty("user.home"));
+	private File path = new File(System.getProperty("user.home"), "/Music/1");
 	private Jolivia jolivia;
+	private String androidId;
 
 	/**
 	 * Create the application.
@@ -80,6 +82,7 @@ public class Window
 		{
 			txtUsername.setText(args[0]);
 			pwdPassword.setText(args[1]);
+			androidId = args[2];
 			//new GReporter(args[0]);
 		}
 		else
@@ -172,13 +175,13 @@ public class Window
 			{
 				if(jolivia != null)
 				{
-					jolivia.reRegister();
+				    jolivia.reRegister();
 					return;
 				}
 
 				btnNewButton_1.setText("Publishing to all networks");
 				btnNewButton_1.setEnabled(false);
-				txtUsername.setEnabled(false);
+                txtUsername.setEnabled(false);
 				pwdPassword.setEnabled(false);
 				btnNewButton.setEnabled(false);
 				textField.setEnabled(false);
@@ -191,17 +194,18 @@ public class Window
 						try
 						{
 							IMusicStoreReader reader;
-							/*if(chckbxUseGoogleMusic.isSelected())
+							if(chckbxUseGoogleMusic.isSelected())
 							{
-								reader = new GoogleStoreReader(txtUsername.getText(), new String(pwdPassword.getPassword()));
+								reader = new GoogleStoreReader(txtUsername.getText(), new String(pwdPassword.getPassword()), androidId);
 //								new GReporter(txtUsername.getText());
 							}
 							else
-							{*/
+							{
 								reader = new DeskMusicStoreReader(path);
 //								new GReporter("local version");
-							//}
+							}
 							jolivia = new Jolivia.JoliviaBuilder().port(4000).pairingCode(1337).musicStoreReader(reader).build();
+	                        jolivia.start();
 							btnNewButton_1.setText("Reregister to networks");
 							btnNewButton_1.setEnabled(true);
 						}

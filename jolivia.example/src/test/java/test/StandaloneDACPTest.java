@@ -4,8 +4,8 @@ import java.util.EnumSet;
 
 import javax.servlet.DispatcherType;
 
+import org.dyndns.jkiddo.jetty.DmapConnector;
 import org.dyndns.jkiddo.jetty.ProxyFilter;
-import org.dyndns.jkiddo.jetty.extension.DmapConnector;
 import org.dyndns.jkiddo.service.daap.client.IClientSessionListener;
 import org.dyndns.jkiddo.service.daap.client.PairedRemoteDiscoverer;
 import org.dyndns.jkiddo.service.daap.client.Session;
@@ -87,8 +87,7 @@ public class StandaloneDACPTest {
 		});
 		
 		final Server server = new Server(hostingPort);
-		final Connector dmapConnector = new DmapConnector();
-		dmapConnector.setPort(hostingPort);
+		final Connector dmapConnector = new DmapConnector(server);
 		server.setConnectors(new Connector[] { dmapConnector });
 		final ServletContextHandler sch = new ServletContextHandler(server, "/");
 		sch.addEventListener(new GuiceServletContextListener() {

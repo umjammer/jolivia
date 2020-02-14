@@ -574,7 +574,8 @@ public class DMAPInterface implements ITouchAbleServerResource,
 		if (isDaapRequest(httpServletRequest))
 			return musicLibraryResource.artwork(databaseId, groupId, sessionId,
 					mw, mh, group_type, daapSecInfo);
-		throw new UnknownClientTypeException();
+//	    throw new UnknownClientTypeException(); // TODO
+        return null;
 	}
 
 	@Override

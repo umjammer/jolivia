@@ -6,6 +6,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<groupId>org.dyndns.jkiddo</groupId>
 	<artifactId>jolivia.example</artifactId>
+
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.dyndns.jkiddo</groupId>
@@ -21,9 +29,18 @@
 			<groupId>org.apache.tika</groupId>
 			<artifactId>tika-parsers</artifactId>
 			<version>1.13</version>
+			<exclusions>
+			  <exclusion>
+			    <groupId>com.google.code.gson</groupId>
+			    <artifactId>gson</artifactId>
+			  </exclusion>
+			</exclusions>
 		</dependency>
-		<!-- <dependency> <groupId>googlemusic.api</groupId> <artifactId>googlemusic.api</artifactId> 
-			<version>1.0.0</version> </dependency> -->
+        <dependency>
+          <groupId>com.github.umjammer</groupId>
+          <artifactId>gplaymusic</artifactId>
+          <version>0.3.9v</version>
+        </dependency>
 		<dependency>
 			<groupId>com.google.gdata</groupId>
 			<artifactId>core</artifactId>
