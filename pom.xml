@@ -8,10 +8,20 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>org.dyndns.jkiddo</groupId>
 	<artifactId>jolivia</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
 	<packaging>pom</packaging>
+    <url>https://github.com/umjammer/jolivia</url>
+    <scm>
+      <url>https://github.com/umjammer/jolivia</url>
+    </scm>
+    <issueManagement>
+      <url>https://github.com/umjammer/jolivia/issues</url>
+    </issueManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -83,7 +93,7 @@
 		<module>jolivia.protocol</module>
 		<module>jolivia.jetty</module>
 		<module>jolivia.example</module>
-		<!--  <module>jolivia.ws.example</module>-->
+	<!--  <module>jolivia.ws.example</module>-->
     <!-- <module>jolivia.apache</module>-->
   </modules>
 </project>
